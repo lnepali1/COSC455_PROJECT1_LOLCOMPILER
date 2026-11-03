@@ -1,23 +1,24 @@
 //! The traits given in the project description.
-//!
-//! These are copied from the assignment so the rest of the compiler
-//! can implement them. I picked OPTION 2 for the syntax analyzer
-//! (each parse function returns a `Result`) because it lets the
-//! error message travel back up to one place that prints it and exits,
-//! and it makes the parse functions easy to unit test.
+//! These traits are used by the different parts of our compiler.
+//! They make sure the lexer, parser, and compiler all follow the
+//! same structure, so we can keep the code organized.
 
 /// Trait for a simple lolcompiler front-end.
 /// Errors should cause immediate exit inside the implementation.
 pub trait Compiler {
-    /// Begin the compilation process (entry point).
+    /// This is where the whole compilation process starts.
     fn compile(&mut self, source: &str);
-    /// Get the next token from the lexical analyzer.
+
+    /// Get the next token from the lexer so the parser can work with it.
     fn next_token(&mut self) -> String;
-    /// Run the syntax analyzer starting from <lolcode>.
+
+    /// Start parsing the input based on our grammar.
     fn parse(&mut self);
-    /// Get the current token being processed.
+
+    /// Check which token we're currently working with.
     fn current_token(&self) -> String;
-    /// Set the current token (typically used internally).
+
+    /// Update the current token as we move through the input.
     fn set_current_token(&mut self, tok: String);
 }
 
@@ -25,16 +26,22 @@ pub trait Compiler {
 /// Implements a character-by-character analysis
 /// from a state machine design.
 pub trait LexicalAnalyzer {
-    /// Return the next character from the input.
-    /// If input is exhausted, should terminate the program.
+    /// Read the next character from the input.
+    /// The lexer uses this to move through the source one character at a time.
+    /// If there is nothing left to read, the program should stop.
     fn get_char(&mut self) -> char;
-    /// Add a character to the current potential token.
+
+    /// Add the character we're reading to the token we're building.
     fn add_char(&mut self, c: char);
-    /// Lookup a potential token to determine if it is valid.
-    /// Returns true if a valid token/lexeme, false otherwise.
+
+    /// Check whether the token we have built is actually valid.
+    /// This helps the lexer tell the difference between valid tokens and invalid input.
     fn lookup(&self, s: &str) -> bool;
 }
 
+// We went with OPTION 2 for the syntax analyzer.
+// Each parsing function returns a Result, so if something goes wrong,
+// the error can travel back to the main parser instead of exiting from every function.
 /// OPTION 2 - Trait for a recursive descent Syntax Analyzer.
 /// Each function parses a nonterminal in the grammar.
 /// On error: return Err(message), on success: Ok(()).

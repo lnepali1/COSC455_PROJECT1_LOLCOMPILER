@@ -1,0 +1,9 @@
+(function() {
+    const implementors = Object.fromEntries([["lolcompiler",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.97.0/core/marker/trait.Send.html\" title=\"trait core::marker::Send\">Send</a> for <a class=\"enum\" href=\"lolcompiler/ast/enum.Node.html\" title=\"enum lolcompiler::ast::Node\">Node</a>",0,1,["lolcompiler::ast::Node"]],["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.97.0/core/marker/trait.Send.html\" title=\"trait core::marker::Send\">Send</a> for <a class=\"struct\" href=\"lolcompiler/lexer/struct.LolLexer.html\" title=\"struct lolcompiler::lexer::LolLexer\">LolLexer</a>",0,1,["lolcompiler::lexer::LolLexer"]],["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.97.0/core/marker/trait.Send.html\" title=\"trait core::marker::Send\">Send</a> for <a class=\"struct\" href=\"lolcompiler/parser/struct.LolCompiler.html\" title=\"struct lolcompiler::parser::LolCompiler\">LolCompiler</a>",0,1,["lolcompiler::parser::LolCompiler"]],["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.97.0/core/marker/trait.Send.html\" title=\"trait core::marker::Send\">Send</a> for <a class=\"struct\" href=\"lolcompiler/semantic/struct.Generator.html\" title=\"struct lolcompiler::semantic::Generator\">Generator</a>",0,1,["lolcompiler::semantic::Generator"]]]]]);
+    if (window.register_implementors) {
+        window.register_implementors(implementors);
+    } else {
+        window.pending_implementors = implementors;
+    }
+})()
+//{"start":59,"fragment_lengths":[1257]}
